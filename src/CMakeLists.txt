@@ -21,10 +21,6 @@ add_subdirectory(ThirdParty/imgui_cmake)
 add_executable(DesyncDebugger main.cpp 
     App.cpp 
     App.h 
-    CPUProfiler.cpp
-    CPUProfiler.h
-    ProfilerView.cpp
-    ProfilerView.h
     Common.h
 )
 

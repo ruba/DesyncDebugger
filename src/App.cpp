@@ -1,9 +1,5 @@
 #include "App.h"
 
-#include "CPUProfiler.h"
-
-#include "ProfilerView.h"
-
 #include <iostream>
 
 #include "SDL3/SDL.h"
@@ -14,13 +10,6 @@
 
 bool App::Run()
 {
-    bool pauseScene = false;
-    bool pauseForOneFrame = false;
-
-    float timestamp = 0.0f;
-
-    float screenBufferPitch = _windowSize.x * 4;
-
     while (!_quit)
     {
         SDL_Event event;
@@ -36,22 +25,7 @@ bool App::Run()
 
             if (event.type == SDL_EVENT_KEY_DOWN)
             {
-                switch (event.key.keysym.scancode)
-                {
-                case SDL_SCANCODE_SPACE:
-                    pauseScene = !pauseScene;
-                    break;
-                case SDL_SCANCODE_RIGHT:
-                    pauseForOneFrame = true;
-                    pauseScene = false;
-                    break;
-                }
             }
-        }
-
-        if (!pauseScene)
-        {
-           
         }
 
         ImGui_ImplSDLRenderer_NewFrame();
@@ -67,17 +41,6 @@ bool App::Run()
         ImGui_ImplSDLRenderer_RenderDrawData(ImGui::GetDrawData());
 
         SDL_RenderPresent(_renderer);
-
-        if (!pauseScene)
-        {
-            CPUProfiler::Update();
-        }
-
-        if (pauseForOneFrame)
-        {
-            pauseForOneFrame = false;
-            pauseScene = true;
-        }
     }
 
     return true;
@@ -194,10 +157,5 @@ void App::DrawUI()
             ImGui::EndMenu();
         }
         ImGui::EndMainMenuBar();
-    }
-
-    if (_showProfiler)
-    {
-        ProfilerView::Show(_showProfiler);
     }
 }
