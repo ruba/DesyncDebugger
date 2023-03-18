@@ -3,8 +3,6 @@
 #include "CPUProfiler.h"
 #include "imgui.h"
 
-#include "SDL.h"
-
 #include <vector>
 
 namespace ProfilerView
@@ -39,7 +37,7 @@ namespace ProfilerView
 		ImGuiTreeNodeFlags nodeFlags = childs.empty() ? ImGuiTreeNodeFlags_Leaf : ImGuiTreeNodeFlags_OpenOnArrow;
 
 		char text[80];
-		SDL_snprintf(text, sizeof(text), "%s: %.2f ###%s", scope->name, scope->time, scope->name);
+		std::snprintf(text, sizeof(text), "%s: %.2f ###%s", scope->name, scope->time, scope->name);
 
 		if (ImGui::TreeNodeEx(text, nodeFlags))
 		{
@@ -79,10 +77,10 @@ namespace ProfilerView
 		avg /= static_cast<float>(history_length);
 
 		char text[80];
-		SDL_snprintf(text, sizeof(text), "avg: %.2f, max: %.2f", avg, max);
+		std::snprintf(text, sizeof(text), "avg: %.2f, max: %.2f", avg, max);
 
 		char plotText[80];
-		SDL_snprintf(plotText, sizeof(plotText), "CPU: %s", scopes[scope_history_id].name);
+		std::snprintf(plotText, sizeof(plotText), "CPU: %s", scopes[scope_history_id].name);
 		
 		if (ImGui::Begin("Profiler", &show))
 		{

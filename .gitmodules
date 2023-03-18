@@ -4,12 +4,3 @@
 [submodule "src/ThirdParty/SDL"]
 	path = src/ThirdParty/SDL
 	url = https://github.com/libsdl-org/SDL.git
-[submodule "src/ThirdParty/VideoProcessing"]
-	path = src/ThirdParty/VideoProcessing
-	url = https://github.com/ruba/VideoProcessing.git
-[submodule "src/ThirdParty/SDL_image"]
-	path = src/ThirdParty/SDL_image
-	url = https://github.com/libsdl-org/SDL_image.git
-[submodule "src/ThirdParty/eigen"]
-	path = src/ThirdParty/eigen
-	url = https://gitlab.com/libeigen/eigen.git
