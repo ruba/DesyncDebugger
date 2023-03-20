@@ -8,7 +8,9 @@
 #include "backends/imgui_impl_sdl3.h"
 #include "backends/imgui_impl_sdlrenderer.h"
 
-bool App::Run()
+
+
+bool App::Run(AppUI* AppUI)
 {
     while (!_quit)
     {
@@ -35,7 +37,7 @@ bool App::Run()
         SDL_SetRenderDrawColor(_renderer, 0, 0, 0, 0);
         SDL_RenderClear(_renderer);
 
-        DrawUI();
+        DrawUI(AppUI);
 
         ImGui::Render();
         ImGui_ImplSDLRenderer_RenderDrawData(ImGui::GetDrawData());
@@ -61,7 +63,7 @@ bool App::Init(uint2 windowSize)
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
     
-    _window = SDL_CreateWindow("VideoFrameViewer",
+    _window = SDL_CreateWindow("DesyncDebugger",
         windowSize.x, windowSize.y,
         SDL_WINDOW_OPENGL | SDL_RENDERER_PRESENTVSYNC);
 
@@ -134,7 +136,7 @@ void App::Shutdown()
     SDL_Quit();
 }
 
-void App::DrawUI()
+void App::DrawUI(AppUI* AppUI)
 {
     if (ImGui::BeginMainMenuBar())
     {
@@ -157,5 +159,10 @@ void App::DrawUI()
             ImGui::EndMenu();
         }
         ImGui::EndMainMenuBar();
+    }
+
+    if (AppUI != nullptr)
+    {
+        AppUI->DrawUI();
     }
 }

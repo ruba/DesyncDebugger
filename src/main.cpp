@@ -6,30 +6,31 @@
 
 #include "App.h"
 
-const uint32_t screenWidth = 1920;
-const uint32_t screenHeight = 1080;
+const uint32_t AppWidth = 1920;
+const uint32_t AppHeight = 1080;
 
-void ParseCmdLineArguments(int argc, char** argv/*, VideoStreamFrameSource::Options& options*/)
+void ParseCmdLineArguments(int argc, char** argv)
 {
     if (argc <= 1)
     {
-        SDL_Log("No arguments provided. Enabling rendering mode");
         return;
     }
 }
 
 int main(int argc, char** argv)
 {
-    App app;
+    App App;
 
-    if (!app.Init(uint2(screenWidth, screenHeight)))
+    if (!App.Init(uint2(AppWidth, AppHeight)))
     {
         return -1;
     }
 
     ParseCmdLineArguments(argc, argv);
 
-    app.Run();
+    AppUI AppUI;
 
-    app.Shutdown();
+    App.Run(&AppUI);
+
+    App.Shutdown();
 }

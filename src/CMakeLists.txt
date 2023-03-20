@@ -20,7 +20,9 @@ add_subdirectory(ThirdParty/imgui_cmake)
 
 add_executable(DesyncDebugger main.cpp 
     App.cpp 
-    App.h 
+    App.h
+    AppUI.cpp
+    AppUI.h
     Common.h
 )
 
